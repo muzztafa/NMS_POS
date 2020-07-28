@@ -15,6 +15,8 @@ namespace NMS_POS
         public Home()
         {
             InitializeComponent();
+            
+
         }
 
         private void invoices_btn_Click(object sender, EventArgs e)
@@ -22,6 +24,23 @@ namespace NMS_POS
             Invoices invoice = new Invoices();
             invoice.Show();
             Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+
+            InitializeComponent();
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void reports_btn_MouseHover(object sender, EventArgs e)
+        {
+
         }
     }
 }
