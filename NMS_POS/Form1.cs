@@ -56,7 +56,28 @@ namespace NMS_POS
             Home h = new Home();
             h.Show();
             this.Hide();
+            Home Home = new Home(); //this is the change, code for redirect  
+            Home.Show();
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void name_editText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pw_editText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

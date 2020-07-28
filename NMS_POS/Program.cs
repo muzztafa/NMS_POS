@@ -16,7 +16,8 @@ namespace NMS_POS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+            Application.Run(new Form1());
+
         }
     }
 }
