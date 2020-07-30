@@ -53,6 +53,13 @@ namespace NMS_POS
              Data result = response.ResultAs<Data>();
 
              MessageBox.Show("Data Inserted");*/
+
+            
+            
+            
+            
+
+
             Home h = new Home();
             h.Show();
             this.Hide();

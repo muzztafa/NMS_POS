@@ -83,6 +83,7 @@
             this.inventory_btn.Size = new System.Drawing.Size(265, 137);
             this.inventory_btn.TabIndex = 3;
             this.inventory_btn.UseVisualStyleBackColor = true;
+            this.inventory_btn.Click += new System.EventHandler(this.inventory_btn_Click);
             // 
             // label1
             // 

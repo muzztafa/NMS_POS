@@ -35,7 +35,7 @@ namespace NMS_POS
             }
 
         private async void updateInvoice() {
-            FirebaseResponse resp = await client.GetTaskAsync("Counter/node");
+            FirebaseResponse resp = await client.GetTaskAsync("Counter/productID");
             Counter_class get = resp.ResultAs<Counter_class>();
 
             MessageBox.Show(get.cnt);

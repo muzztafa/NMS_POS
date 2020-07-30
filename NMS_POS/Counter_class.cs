@@ -8,6 +8,8 @@ namespace NMS_POS
 {
     class Counter_class
     {
+   
+
         public string cnt { get; set; }
     }
 }

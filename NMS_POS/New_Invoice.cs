@@ -116,23 +116,6 @@ namespace NMS_POS
                 productList.Add(product);
                 //Console.WriteLine(product.name+" : "+product.price);
             }
-
-           
-         
-            
-            
-
-            
-
-           // MessageBox.Show(tempkeys+" temp");
-           ////// MessageBox.Show(tempkeys+" temp");
-           // for(int i = 0; i<keys.Count; i++)
-            //{
-                //Console.WriteLine(keys[i]);
-               // MessageBox.Show(keys[i]);
-            //}
-          //  MessageBox.Show(resp.ToString()+"He");
-          //  Counter_class get = resp.ResultAs<Counter_class>();
         }
 
         private void addToInvoice(string name)
@@ -140,8 +123,9 @@ namespace NMS_POS
 
         }
 
+        private void products_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-
-
+        }
     }
 }

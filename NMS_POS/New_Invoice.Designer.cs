@@ -127,6 +127,7 @@
             this.products_grid.ReadOnly = true;
             this.products_grid.Size = new System.Drawing.Size(545, 334);
             this.products_grid.TabIndex = 9;
+            this.products_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.products_grid_CellContentClick);
             // 
             // New_Invoice
             // 

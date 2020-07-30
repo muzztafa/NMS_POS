@@ -42,5 +42,12 @@ namespace NMS_POS
         {
 
         }
+
+        private void inventory_btn_Click(object sender, EventArgs e)
+        {
+            Inventory i = new Inventory();
+            i.Show();
+            Hide();
+        }
     }
 }

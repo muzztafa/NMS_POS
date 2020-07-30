@@ -8,6 +8,27 @@ namespace NMS_POS
 {
     class Products_class
     {
+
+        public Products_class(string des, string disc, bool feat, string img, string name, bool presc, string price, string quantity, string timestamp)
+        {
+            this.description = des;
+            this.discount = disc;
+            this.featured = feat;
+            this.image = img;
+            this.name = name;
+            this.prescription = presc;
+            this.price = price;
+            this.quantity = quantity;
+            this.timestamp = timestamp;
+            this.avgReviews = "0";
+            this.totalReviews = "0";
+            // this.unique = unique;
+        }
+
+        public Products_class()
+        {
+
+        }
         public string description { get; set; }
         public string discount { get; set; }
         public bool featured { get; set; }
@@ -18,5 +39,9 @@ namespace NMS_POS
         public string quantity { get; set; }
         public string timestamp { get; set; }
         public string unique { get; set; }
+        public string avgReviews { get; set; }
+        public string totalReviews { get; set; }
     }
+
+
 }
