@@ -56,6 +56,7 @@
             this.inventory_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inventory_datagrid.Location = new System.Drawing.Point(12, 206);
             this.inventory_datagrid.Name = "inventory_datagrid";
+            this.inventory_datagrid.ReadOnly = true;
             this.inventory_datagrid.Size = new System.Drawing.Size(845, 423);
             this.inventory_datagrid.TabIndex = 0;
             this.inventory_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventory_datagrid_CellContentDoubleClick);
