@@ -18,6 +18,7 @@ namespace NMS_POS
     {
         List<string> keys = new List<string>();
         List<Products_class> productList = new List<Products_class>();
+        List<Products_class> selectedProductList = new List<Products_class>();
         DataTable dt = new DataTable();
 
         IFirebaseConfig config = new FirebaseConfig
@@ -43,6 +44,14 @@ namespace NMS_POS
             dt.Columns.Add("Quantity");
             dt.Columns.Add("Discount");
             dt.Columns.Add("Description");
+            dt.Columns.Add("Total");
+
+            quantity_editText.Text = "1";
+            cashier_editText.Text = "Admin";
+            invoiceDate_editText.Text = DateTime.Now.ToString();
+            invoiceDate_editText.Enabled = false;
+
+            invoiceNo_editText.Text = "1000";
 
             products_grid.DataSource = dt;
 
@@ -72,14 +81,45 @@ namespace NMS_POS
                         break;
                     }
                 }
-                DataRow row = dt.NewRow();
-                row["Name"] = text;
-                row["Price"] = productList[temp].price;
-                row["Quantity"] = productList[temp].quantity;
-                row["Discount"] = productList[temp].discount;
-                row["Description"] = productList[temp].description;
 
-                dt.Rows.Add(row);
+                if (Int32.Parse(productList[temp].quantity) < Int32.Parse(quantity_editText.Text))
+                {
+                    MessageBox.Show("Insufficient Stocks. You only have "+ productList[temp].quantity+ " of stocks available in the inventory.");
+                }
+                else
+                {
+                    DataRow row = dt.NewRow();
+                    row["Name"] = text;
+                    row["Price"] = productList[temp].price;
+
+                    row["Quantity"] = quantity_editText.Text;
+                    row["Discount"] = productList[temp].discount;
+                    row["Description"] = productList[temp].description;
+
+                    int tempPrice = Int32.Parse(productList[temp].price);
+                    int tempDisc = Int32.Parse(productList[temp].discount);
+                    int discountedPrice = tempPrice - ((tempDisc * tempPrice) / 100);
+
+                    row["Total"] = "" + discountedPrice * Int32.Parse(quantity_editText.Text);
+
+                    totalBill_label.Text = ""+(double)(double.Parse(totalBill_label.Text) + discountedPrice * Int32.Parse(quantity_editText.Text));
+
+                    dt.Rows.Add(row);
+
+                    //adding to selectedProdList
+                    Products_class product = new Products_class
+                    {
+                        name = productList[temp].name,
+                        price = productList[temp].price,
+                        quantity = quantity_editText.Text,
+                        discount = productList[temp].discount,
+                        featured = productList[temp].featured,
+                        prescription = productList[temp].prescription
+
+                    };
+                    // selectedProductList.Add(productList[temp]);
+                    selectedProductList.Add(product);
+                }
             }
             else
             {
@@ -126,6 +166,54 @@ namespace NMS_POS
         private void products_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private async void createInvoice_btn_Click(object sender, EventArgs e)
+        {
+            Invoices_class invoice = new Invoices_class
+            {
+                cashier = cashier_editText.Text,
+                timestamp = invoiceDate_editText.Text,
+                invoiceNo = invoiceNo_editText.Text,
+                totalBill = totalBill_label.Text,
+                productList = selectedProductList
+
+            };
+
+            PushResponse response = await client.PushTaskAsync("invoices", invoice);
+            MessageBox.Show("Invoice Added Successfully!");
+            this.Hide();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int temp = products_grid.CurrentCell.RowIndex;
+                //Console.WriteLine("temp " + temp);
+                //FirebaseResponse response = await client.DeleteTaskAsync("products/" + keys[temp]);
+
+                ////Console.WriteLine("Removing: " + selectedProductList[temp].name);
+                
+
+                totalBill_label.Text = ""+(double.Parse(totalBill_label.Text) - (double.Parse(selectedProductList[temp].price) * double.Parse(selectedProductList[temp].quantity)));
+                selectedProductList.RemoveAt(temp);
+                dt.Rows.RemoveAt(temp);
+                MessageBox.Show("Deleted Successfully");
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please select a row to delete");
+               
+            }
         }
     }
 }

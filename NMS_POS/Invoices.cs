@@ -34,11 +34,8 @@ namespace NMS_POS
             updateInvoice();
             }
 
-        private async void updateInvoice() {
-            FirebaseResponse resp = await client.GetTaskAsync("Counter/productID");
-            Counter_class get = resp.ResultAs<Counter_class>();
-
-            MessageBox.Show(get.cnt);
+        private  void updateInvoice() {
+           
         }
 
         private void newInvoice_btn_Click(object sender, EventArgs e)

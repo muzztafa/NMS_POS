@@ -86,6 +86,7 @@
     <Compile Include="Invoices.Designer.cs">
       <DependentUpon>Invoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoices_class.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="New_Invoice.cs">
       <SubType>Form</SubType>

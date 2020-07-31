@@ -133,7 +133,7 @@ namespace NMS_POS
                 }
 
 
-                Console.WriteLine("response: "+response.Result.ToString());
+                //Console.WriteLine("response: "+response.Result.ToString());
 
                 //adding new row to DT
                 DataRow row = dt.NewRow();
