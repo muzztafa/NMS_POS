@@ -22,12 +22,13 @@ namespace NMS_POS
             this.timestamp = timestamp;
             this.avgReviews = "0";
             this.totalReviews = "0";
+            //this.keywords = new List<bool>();
             // this.unique = unique;
         }
 
         public Products_class()
         {
-
+         //   this.keywords = new List<bool>();
         }
         public string description { get; set; }
         public string discount { get; set; }
@@ -41,6 +42,7 @@ namespace NMS_POS
         public string unique { get; set; }
         public string avgReviews { get; set; }
         public string totalReviews { get; set; }
+       // public List<bool> keywords { get; set; }
     }
 
 

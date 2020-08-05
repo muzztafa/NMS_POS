@@ -112,7 +112,7 @@ namespace NMS_POS
             }
             else
             {
-                Console.WriteLine("temp:" + temp);
+               // Console.WriteLine("temp:" + temp);
                
                 Modal_Invoices_Detail md = new Modal_Invoices_Detail(temp, invoicesList);
                 md.Show();

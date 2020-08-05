@@ -91,63 +91,84 @@ namespace NMS_POS
                 MessageBox.Show("Fill quantity field first.");
             }
 
-            else {
-                bool temp1, temp2;
-                if (featured_list.GetItemText(featured_list.SelectedItem) == "false")
+            else
+            {
+                bool check = false;
+
+                for (int i = 0; i < productList.Count; i++)
                 {
-                    temp1 = false;
-                }
-                else
-                {
-                    temp1 = true;
-                }
-
-                if (prescription_list.GetItemText(prescription_list.SelectedItem) == "false")
-                {
-                    temp2 = false;
-                }
-                else
-                {
-                    temp2 = true;
-                }
-
-                //Adding product to firebase
-                Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text+"",name_editText.Text, temp2, price_editText.Text,quantity_editText.Text, DateTime.Now.ToString());
-
-                PushResponse response = await client.PushTaskAsync("products", product);
-
-                productList.Add(product);
-
-                FirebaseResponse resp = await client.GetTaskAsync("products/");
-                Dictionary<string, Products_class> dict = resp.ResultAs<Dictionary<string, Products_class>>();
-
-                //Adding new key to keys array
-                foreach (KeyValuePair<string, Products_class> ele1 in dict)
-                {
-                    if (!keys.Contains(ele1.Key))
+                    if (name_editText.Text.ToLower() == productList[i].name.ToLower())
                     {
-                        keys.Add(ele1.Key);
+                        check = true;
                         break;
                     }
-                    
+
                 }
 
+                if (!check)
+                {
+                    bool temp1, temp2;
+                    if (featured_list.GetItemText(featured_list.SelectedItem) == "false")
+                    {
+                        temp1 = false;
+                    }
+                    else
+                    {
+                        temp1 = true;
+                    }
 
-                //Console.WriteLine("response: "+response.Result.ToString());
+                    if (prescription_list.GetItemText(prescription_list.SelectedItem) == "false")
+                    {
+                        temp2 = false;
+                    }
+                    else
+                    {
+                        temp2 = true;
+                    }
 
-                //adding new row to DT
-                DataRow row = dt.NewRow();
-                row["Name"] = product.name;
-                row["Price"] = product.price;
-                row["Quantity"] = product.quantity;
-                row["Discount"] = product.discount;
-                row["Description"] = product.description;
-                row["Featured"] = product.featured;
-                row["Prescription"] = product.prescription;
-                row["Date"] = product.timestamp;
+                    //Adding product to firebase
+                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text + "", name_editText.Text, temp2, price_editText.Text, quantity_editText.Text, DateTime.Now.ToString());
 
-                dt.Rows.Add(row);
+                    PushResponse response = await client.PushTaskAsync("products", product);
 
+                    productList.Add(product);
+
+                    FirebaseResponse resp = await client.GetTaskAsync("products/");
+                    Dictionary<string, Products_class> dict = resp.ResultAs<Dictionary<string, Products_class>>();
+
+                    //Adding new key to keys array
+                    foreach (KeyValuePair<string, Products_class> ele1 in dict)
+                    {
+                        if (!keys.Contains(ele1.Key))
+                        {
+                            keys.Add(ele1.Key);
+                            break;
+                        }
+
+                    }
+
+
+                    //Console.WriteLine("response: "+response.Result.ToString());
+
+                    //adding new row to DT
+                    DataRow row = dt.NewRow();
+                    row["Name"] = product.name;
+                    row["Price"] = product.price;
+                    row["Quantity"] = product.quantity;
+                    row["Discount"] = product.discount;
+                    row["Description"] = product.description;
+                    row["Featured"] = product.featured;
+                    row["Prescription"] = product.prescription;
+                    row["Date"] = product.timestamp;
+
+                    dt.Rows.Add(row);
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Product already exists in the inventory.");
+                }
             }
         }
 
@@ -213,29 +234,34 @@ namespace NMS_POS
 
         private void inventory_datagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             selectedRow = inventory_datagrid.CurrentCell.RowIndex;
-            name_editText.Text = productList[selectedRow].name;
-            price_editText.Text = productList[selectedRow].price;
-            description_editText.Text = productList[selectedRow].description;
-            quantity_editText.Text = productList[selectedRow].quantity;
-            image_editText.Text = productList[selectedRow].image;
-            discount_editText.Text = productList[selectedRow].discount;
-
-            if (productList[selectedRow].featured == false)
+            if (selectedRow < 0 || selectedRow >= productList.Count)
             {
-                featured_list.SelectedIndex = 0;
+                MessageBox.Show("Please select a valid box!");
             }
-            else featured_list.SelectedIndex = 1;
-
-            if (productList[selectedRow].prescription == false)
+            else
             {
-                prescription_list.SelectedIndex = 0;
+                name_editText.Text = productList[selectedRow].name;
+                price_editText.Text = productList[selectedRow].price;
+                description_editText.Text = productList[selectedRow].description;
+                quantity_editText.Text = productList[selectedRow].quantity;
+                image_editText.Text = productList[selectedRow].image;
+                discount_editText.Text = productList[selectedRow].discount;
+
+                if (productList[selectedRow].featured == false)
+                {
+                    featured_list.SelectedIndex = 0;
+                }
+                else featured_list.SelectedIndex = 1;
+
+                if (productList[selectedRow].prescription == false)
+                {
+                    prescription_list.SelectedIndex = 0;
+                }
+                else prescription_list.SelectedIndex = 1;
+              
             }
-            else prescription_list.SelectedIndex = 1;
-            ////if (inventory_datagrid.SelectedCells == null) return;
-            //var selectedPerson = inventory_datagrid.SelectedItem as Person;
-            // MessageBox.Show(string.Format("The Person you double clicked on is - Name: {0}, Address: {1}, Email: {2}", selectedPerson.Name, selectedPerson.Address, selectedPerson.Email));
         }
 
         private async void update_btn_Click(object sender, EventArgs e)
