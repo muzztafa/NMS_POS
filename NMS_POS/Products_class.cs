@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NMS_POS
 {
-    class Products_class
+    public class Products_class
     {
 
         public Products_class(string des, string disc, bool feat, string img, string name, bool presc, string price, string quantity, string timestamp)

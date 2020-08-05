@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NMS_POS
 {
-    class Invoices_class
+   public class Invoices_class
     {
 
         public string cashier { get; set; }

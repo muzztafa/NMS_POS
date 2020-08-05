@@ -59,6 +59,7 @@
             this.inventory_datagrid.ReadOnly = true;
             this.inventory_datagrid.Size = new System.Drawing.Size(845, 423);
             this.inventory_datagrid.TabIndex = 0;
+            this.inventory_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventory_datagrid_CellContentClick);
             this.inventory_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.inventory_datagrid_CellContentDoubleClick);
             // 
             // label1

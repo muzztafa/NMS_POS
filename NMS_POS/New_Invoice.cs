@@ -17,6 +17,8 @@ namespace NMS_POS
     public partial class New_Invoice : Form
     {
         List<string> keys = new List<string>();
+        List<string> selectedKeys = new List<string>();
+        List<string> selectedQuantity = new List<string>();
         List<Products_class> productList = new List<Products_class>();
         List<Products_class> selectedProductList = new List<Products_class>();
         DataTable dt = new DataTable();
@@ -114,11 +116,19 @@ namespace NMS_POS
                         quantity = quantity_editText.Text,
                         discount = productList[temp].discount,
                         featured = productList[temp].featured,
-                        prescription = productList[temp].prescription
+                        prescription = productList[temp].prescription,
+                        avgReviews = productList[temp].avgReviews,
+                        description = productList[temp].description,
+                        image = productList[temp].image,
+                        timestamp = productList[temp].timestamp,
+                        totalReviews = productList[temp].totalReviews
+
 
                     };
                     // selectedProductList.Add(productList[temp]);
                     selectedProductList.Add(product);
+                    selectedKeys.Add(keys[temp]);
+                    selectedQuantity.Add(productList[temp].quantity);
                 }
             }
             else
@@ -181,6 +191,14 @@ namespace NMS_POS
             };
 
             PushResponse response = await client.PushTaskAsync("invoices", invoice);
+
+            for (int i = 0; i < selectedKeys.Count; i++)
+            {
+                int finalQuantity = Int32.Parse(selectedQuantity[i]) - Int32.Parse(selectedProductList[i].quantity);
+                selectedProductList[i].quantity = "" + finalQuantity;
+                FirebaseResponse response2 = await client.UpdateTaskAsync("products/" + keys[i],selectedProductList[i]);
+            }
+           
             MessageBox.Show("Invoice Added Successfully!");
             this.Hide();
         }
@@ -204,6 +222,8 @@ namespace NMS_POS
 
                 totalBill_label.Text = ""+(double.Parse(totalBill_label.Text) - (double.Parse(selectedProductList[temp].price) * double.Parse(selectedProductList[temp].quantity)));
                 selectedProductList.RemoveAt(temp);
+                selectedKeys.RemoveAt(temp);
+                selectedQuantity.RemoveAt(temp);
                 dt.Rows.RemoveAt(temp);
                 MessageBox.Show("Deleted Successfully");
 

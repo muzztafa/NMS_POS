@@ -317,5 +317,10 @@ namespace NMS_POS
                 MessageBox.Show("Update Failed");
             }
         }
+
+        private void inventory_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
