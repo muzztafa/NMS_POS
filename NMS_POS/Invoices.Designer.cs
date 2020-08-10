@@ -30,7 +30,6 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.invoices_datagrid = new System.Windows.Forms.DataGridView();
-            this.back_btn = new System.Windows.Forms.Button();
             this.newInvoice_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.invoices_datagrid)).BeginInit();
             this.SuspendLayout();
@@ -53,16 +52,8 @@
             this.invoices_datagrid.ReadOnly = true;
             this.invoices_datagrid.Size = new System.Drawing.Size(494, 406);
             this.invoices_datagrid.TabIndex = 8;
+            this.invoices_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.invoices_datagrid_CellContentClick_1);
             this.invoices_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.invoices_datagrid_CellContentClick);
-            // 
-            // back_btn
-            // 
-            this.back_btn.Location = new System.Drawing.Point(45, 18);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
-            this.back_btn.TabIndex = 9;
-            this.back_btn.Text = "Back";
-            this.back_btn.UseVisualStyleBackColor = true;
             // 
             // newInvoice_btn
             // 
@@ -79,7 +70,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 561);
-            this.Controls.Add(this.back_btn);
             this.Controls.Add(this.invoices_datagrid);
             this.Controls.Add(this.newInvoice_btn);
             this.Controls.Add(this.label3);
@@ -96,7 +86,6 @@
 
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView invoices_datagrid;
-        private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.Button newInvoice_btn;
     }
 }

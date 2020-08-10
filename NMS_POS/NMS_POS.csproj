@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_Vendor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Vendor.Designer.cs">
+      <DependentUpon>Add_Vendor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Counter.cs" />
     <Compile Include="Counter_class.cs" />
     <Compile Include="Data.cs" />
@@ -94,15 +100,44 @@
     <Compile Include="Modal_Invoices_Detail.Designer.cs">
       <DependentUpon>Modal_Invoices_Detail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modal_Purchases_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modal_Purchases_Detail.Designer.cs">
+      <DependentUpon>Modal_Purchases_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="New_Invoice.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="New_Invoice.Designer.cs">
       <DependentUpon>New_Invoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="New_Item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Item.Designer.cs">
+      <DependentUpon>New_Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New_Purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Purchase.Designer.cs">
+      <DependentUpon>New_Purchase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products_class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrder_class.cs" />
+    <Compile Include="Purchasing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing.Designer.cs">
+      <DependentUpon>Purchasing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor_class.cs" />
+    <EmbeddedResource Include="Add_Vendor.resx">
+      <DependentUpon>Add_Vendor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,8 +153,17 @@
     <EmbeddedResource Include="Modal_Invoices_Detail.resx">
       <DependentUpon>Modal_Invoices_Detail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modal_Purchases_Detail.resx">
+      <DependentUpon>Modal_Purchases_Detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="New_Invoice.resx">
       <DependentUpon>New_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Item.resx">
+      <DependentUpon>New_Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Purchase.resx">
+      <DependentUpon>New_Purchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -130,6 +174,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Purchasing.resx">
+      <DependentUpon>Purchasing.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

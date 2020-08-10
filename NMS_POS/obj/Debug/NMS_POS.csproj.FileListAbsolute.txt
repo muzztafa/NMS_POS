@@ -40,3 +40,8 @@ C:\Users\ASUS\Source\Repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.exe
 C:\Users\ASUS\Source\Repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.pdb
 C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Inventory.resources
 C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Modal_Invoices_Detail.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.New_Purchase.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Purchasing.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Add_Vendor.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.New_Item.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Modal_Purchases_Detail.resources

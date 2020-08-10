@@ -33,6 +33,7 @@ namespace NMS_POS
         };
 
         IFirebaseClient client;
+
         public Invoices()
         {
             InitializeComponent();
@@ -120,6 +121,11 @@ namespace NMS_POS
             
             
           
+        }
+
+        private void invoices_datagrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 
