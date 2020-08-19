@@ -49,5 +49,12 @@ namespace NMS_POS
             i.Show();
             Hide();
         }
+
+        private void reports_btn_Click(object sender, EventArgs e)
+        {
+            Reports r = new Reports();
+            r.Show();
+            this.Hide();
+        }
     }
 }

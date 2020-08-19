@@ -60,6 +60,7 @@
             this.reports_btn.Size = new System.Drawing.Size(265, 137);
             this.reports_btn.TabIndex = 1;
             this.reports_btn.UseVisualStyleBackColor = true;
+            this.reports_btn.Click += new System.EventHandler(this.reports_btn_Click);
             this.reports_btn.MouseHover += new System.EventHandler(this.reports_btn_MouseHover);
             // 
             // purchase_btn

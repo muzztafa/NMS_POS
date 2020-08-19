@@ -134,6 +134,12 @@
     <Compile Include="Purchasing.Designer.cs">
       <DependentUpon>Purchasing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vendor_class.cs" />
     <EmbeddedResource Include="Add_Vendor.resx">
       <DependentUpon>Add_Vendor.cs</DependentUpon>
@@ -176,6 +182,9 @@
     </Compile>
     <EmbeddedResource Include="Purchasing.resx">
       <DependentUpon>Purchasing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

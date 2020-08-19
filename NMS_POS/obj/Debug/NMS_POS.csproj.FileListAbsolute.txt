@@ -45,3 +45,4 @@ C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Purchasing.resource
 C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Add_Vendor.resources
 C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.New_Item.resources
 C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Modal_Purchases_Detail.resources
+C:\Users\Home\source\repos\NMS_POS\NMS_POS\obj\Debug\NMS_POS.Reports.resources
