@@ -36,12 +36,14 @@
             // 
             // purchasing_datagrid
             // 
+            this.purchasing_datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.purchasing_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.purchasing_datagrid.Location = new System.Drawing.Point(48, 124);
             this.purchasing_datagrid.Name = "purchasing_datagrid";
             this.purchasing_datagrid.ReadOnly = true;
             this.purchasing_datagrid.Size = new System.Drawing.Size(494, 406);
             this.purchasing_datagrid.TabIndex = 9;
+            this.purchasing_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchasing_datagrid_CellContentClick_1);
             this.purchasing_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purchasing_datagrid_CellContentClick);
             // 
             // newPurchase_btn

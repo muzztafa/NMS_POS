@@ -64,6 +64,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.products_grid)).BeginInit();
             this.SuspendLayout();
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(22, 196);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(49, 13);
+            label4.TabIndex = 48;
+            label4.Text = "Products";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -144,6 +153,7 @@
             this.products_grid.ReadOnly = true;
             this.products_grid.Size = new System.Drawing.Size(601, 307);
             this.products_grid.TabIndex = 24;
+            this.products_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.products_grid_CellContentClick);
             // 
             // createOrder_btn
             // 
@@ -337,15 +347,6 @@
             this.product_list.Size = new System.Drawing.Size(172, 329);
             this.product_list.TabIndex = 47;
             this.product_list.SelectedIndexChanged += new System.EventHandler(this.product_list_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(22, 196);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(49, 13);
-            label4.TabIndex = 48;
-            label4.Text = "Products";
             // 
             // New_Purchase
             // 

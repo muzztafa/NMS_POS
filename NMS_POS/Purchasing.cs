@@ -52,6 +52,7 @@ namespace NMS_POS
             dt.Columns.Add("Purchase Order #");
             dt.Columns.Add("TimeStamp");
             dt.Columns.Add("Total Bill");
+            dt.Columns.Add("Punched By");
 
             purchasing_datagrid.DataSource = dt;
 
@@ -88,6 +89,7 @@ namespace NMS_POS
                     row["Purchase Order #"] = orderList[i].orderNo;
                     row["TimeStamp"] = orderList[i].orderDate;
                     row["Total Bill"] = orderList[i].totalBill;
+                    row["Punched By"] = orderList[i].punchedBy;
 
                     dt.Rows.Add(row);
                     //   Console.WriteLine("Row added");
@@ -114,6 +116,11 @@ namespace NMS_POS
             }
 
 
+
+        }
+
+        private void purchasing_datagrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

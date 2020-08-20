@@ -279,6 +279,12 @@ namespace NMS_POS
             totalBill_label.Text = temp2 + "";
             noOfRecords_label.Text = "" + list.Count;
             InvoicesList = list;
+
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
         }
 
         private void Get_Sales_ThisWeek()
@@ -339,6 +345,11 @@ namespace NMS_POS
             noOfRecords_label.Text = "" + list.Count;
             InvoicesList = list;
 
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
 
         }
 
@@ -390,6 +401,11 @@ namespace NMS_POS
             noOfRecords_label.Text = "" + list.Count;
             InvoicesList = list;
 
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
         }
 
 
@@ -443,6 +459,12 @@ namespace NMS_POS
             totalBill_label.Text = "" + temp2;
             noOfRecords_label.Text = "" + list.Count;
             PurchasesList = list;
+
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
         }
 
         private void Get_Purchases_ThisWeek()
@@ -501,6 +523,12 @@ namespace NMS_POS
             totalBill_label.Text = "" + temp2;
             noOfRecords_label.Text = "" + list.Count;
             PurchasesList = list;
+
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
         }
 
         private void Get_Purchases_ThisMonth()
@@ -551,6 +579,11 @@ namespace NMS_POS
 
             PurchasesList = list;
 
+            //if list is empty
+            if (!list.Any())
+            {
+                MessageBox.Show("No records found for the requested query.");
+            }
         }
 
 
@@ -613,6 +646,12 @@ namespace NMS_POS
                 totalBill_label.Text = temp2 + "";
                 noOfRecords_label.Text = "" + list.Count;
                 InvoicesList = list;
+
+                //if list is empty
+                if (!list.Any())
+                {
+                    MessageBox.Show("No records found for the requested query.");
+                }
             }
 
             else if(fromDate != "" && toDate != "")
@@ -694,6 +733,12 @@ namespace NMS_POS
                 noOfRecords_label.Text = "" + list.Count;
 
                 InvoicesList = list;
+
+                //if list is empty
+                if (!list.Any())
+                {
+                    MessageBox.Show("No records found for the requested query.");
+                }
             }
 
         }
@@ -754,6 +799,12 @@ namespace NMS_POS
                 noOfRecords_label.Text = "" + list.Count;
 
                 PurchasesList = list;
+
+                //if list is empty
+                if (!list.Any())
+                {
+                    MessageBox.Show("No records found for the requested query.");
+                }
             }
 
             else if (fromDate != "" && toDate != "")
@@ -834,22 +885,47 @@ namespace NMS_POS
                 noOfRecords_label.Text = "" + list.Count;
 
                 PurchasesList = list;
+
+                //if list is empty
+                if (!list.Any())
+                {
+                    MessageBox.Show("No records found for the requested query.");
+                }
             }
         }
 
         private void datagrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int temp = datagrid.CurrentCell.RowIndex;
-            if (temp < 0 || temp >= invoicesList.Count)
+            if (mode == 0)
             {
-                MessageBox.Show("Please select a valid invoice!");
+                int temp = datagrid.CurrentCell.RowIndex;
+                if (temp < 0 || temp >= InvoicesList.Count)
+                {
+                    MessageBox.Show("Please select a valid invoice!");
+                }
+                else
+                {
+                    // Console.WriteLine("temp:" + temp);
+
+                    Modal_Invoices_Detail md = new Modal_Invoices_Detail(temp, InvoicesList);
+                    md.Show();
+                }
             }
+
             else
             {
-                // Console.WriteLine("temp:" + temp);
+                int temp = datagrid.CurrentCell.RowIndex;
+                if (temp < 0 || temp >= PurchasesList.Count)
+                {
+                    MessageBox.Show("Please select a valid order!");
+                }
+                else
+                {
+                    // Console.WriteLine("temp:" + temp);
 
-                Modal_Invoices_Detail md = new Modal_Invoices_Detail(temp, invoicesList);
-                md.Show();
+                    Modal_Purchases_Detail md = new Modal_Purchases_Detail(temp, PurchasesList, PurchasesList[temp].vendor);
+                    md.Show();
+                }
             }
         }
     }

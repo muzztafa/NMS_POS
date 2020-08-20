@@ -127,7 +127,7 @@ namespace NMS_POS
                     }
 
                     //Adding product to firebase
-                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text + "", name_editText.Text, temp2, price_editText.Text, quantity_editText.Text, DateTime.Now.ToString());
+                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text + "", name_editText.Text, temp2, double.Parse(price_editText.Text), int.Parse(quantity_editText.Text), DateTime.Now.ToString());
 
                     PushResponse response = await client.PushTaskAsync("products", product);
 
@@ -183,7 +183,7 @@ namespace NMS_POS
             foreach (KeyValuePair<string, Products_class> ele1 in dict)
             {
                 keys.Add(ele1.Key);
-                // Console.WriteLine("{0} and {1}",
+                // Console.WriteLine(+"{0} and {1}",
                 //  ele1.Key, ele1.Value);
             }
 
@@ -243,9 +243,9 @@ namespace NMS_POS
             else
             {
                 name_editText.Text = productList[selectedRow].name;
-                price_editText.Text = productList[selectedRow].price;
+                price_editText.Text = productList[selectedRow].price+"";
                 description_editText.Text = productList[selectedRow].description;
-                quantity_editText.Text = productList[selectedRow].quantity;
+                quantity_editText.Text = productList[selectedRow].quantity+"";
                 image_editText.Text = productList[selectedRow].image;
                 discount_editText.Text = productList[selectedRow].discount;
 
@@ -274,15 +274,15 @@ namespace NMS_POS
                 inventory_datagrid.Rows[selectedRow].Cells[0].Value =product.name;
             }
 
-            if (product.price != price_editText.Text)
+            if (product.price+"" != price_editText.Text)
             {
-                product.price = price_editText.Text;
+                product.price = double.Parse(price_editText.Text);
                 inventory_datagrid.Rows[selectedRow].Cells[1].Value = product.price;
             }
 
-            if (product.quantity != quantity_editText.Text)
+            if (product.quantity != int.Parse(quantity_editText.Text))
             {
-                product.quantity = quantity_editText.Text;
+                product.quantity = int.Parse(quantity_editText.Text);
                 inventory_datagrid.Rows[selectedRow].Cells[2].Value = product.quantity;
             }
 

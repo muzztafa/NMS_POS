@@ -49,7 +49,7 @@ namespace NMS_POS
             dt.Columns.Add("Total");
 
             quantity_editText.Text = "1";
-            cashier_editText.Text = "Admin";
+            cashier_editText.Text = Form1.loggedInUser.name;
             invoiceDate_editText.Text = DateTime.Now.ToString();
             invoiceDate_editText.Enabled = false;
 
@@ -84,7 +84,7 @@ namespace NMS_POS
                     }
                 }
 
-                if (Int32.Parse(productList[temp].quantity) < Int32.Parse(quantity_editText.Text))
+                if (productList[temp].quantity < Int32.Parse(quantity_editText.Text))
                 {
                     MessageBox.Show("Insufficient Stocks. You only have "+ productList[temp].quantity+ " of stocks available in the inventory.");
                 }
@@ -98,9 +98,9 @@ namespace NMS_POS
                     row["Discount"] = productList[temp].discount;
                     row["Description"] = productList[temp].description;
 
-                    int tempPrice = Int32.Parse(productList[temp].price);
+                    double tempPrice = productList[temp].price;
                     int tempDisc = Int32.Parse(productList[temp].discount);
-                    int discountedPrice = tempPrice - ((tempDisc * tempPrice) / 100);
+                    double discountedPrice = tempPrice - ((tempDisc * tempPrice) / 100);
 
                     row["Total"] = "" + discountedPrice * Int32.Parse(quantity_editText.Text);
 
@@ -113,7 +113,7 @@ namespace NMS_POS
                     {
                         name = productList[temp].name,
                         price = productList[temp].price,
-                        quantity = quantity_editText.Text,
+                        quantity = int.Parse(quantity_editText.Text),
                         discount = productList[temp].discount,
                         featured = productList[temp].featured,
                         prescription = productList[temp].prescription,
@@ -128,7 +128,7 @@ namespace NMS_POS
                     // selectedProductList.Add(productList[temp]);
                     selectedProductList.Add(product);
                     selectedKeys.Add(keys[temp]);
-                    selectedQuantity.Add(productList[temp].quantity);
+                    selectedQuantity.Add(productList[temp].quantity+"");
                 }
             }
             else
@@ -194,8 +194,8 @@ namespace NMS_POS
 
             for (int i = 0; i < selectedKeys.Count; i++)
             {
-                int finalQuantity = Int32.Parse(selectedQuantity[i]) - Int32.Parse(selectedProductList[i].quantity);
-                selectedProductList[i].quantity = "" + finalQuantity;
+                int finalQuantity = Int32.Parse(selectedQuantity[i]) - selectedProductList[i].quantity;
+                selectedProductList[i].quantity = finalQuantity;
                 FirebaseResponse response2 = await client.UpdateTaskAsync("products/" + keys[i],selectedProductList[i]);
             }
            
@@ -220,7 +220,7 @@ namespace NMS_POS
                 ////Console.WriteLine("Removing: " + selectedProductList[temp].name);
                 
 
-                totalBill_label.Text = ""+(double.Parse(totalBill_label.Text) - (double.Parse(selectedProductList[temp].price) * double.Parse(selectedProductList[temp].quantity)));
+                totalBill_label.Text = ""+(double.Parse(totalBill_label.Text) - (selectedProductList[temp].price * selectedProductList[temp].quantity));
                 selectedProductList.RemoveAt(temp);
                 selectedKeys.RemoveAt(temp);
                 selectedQuantity.RemoveAt(temp);

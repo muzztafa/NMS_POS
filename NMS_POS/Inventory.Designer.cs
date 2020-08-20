@@ -53,6 +53,7 @@
             // 
             // inventory_datagrid
             // 
+            this.inventory_datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.inventory_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inventory_datagrid.Location = new System.Drawing.Point(12, 206);
             this.inventory_datagrid.Name = "inventory_datagrid";

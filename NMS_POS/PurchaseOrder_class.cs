@@ -13,5 +13,6 @@ namespace NMS_POS
         public string totalBill { get; set; }
         public Vendor_class vendor { get; set; }
         public List<Products_class> productList { get; set; }
+        public string punchedBy { get; set; }
     }
 }

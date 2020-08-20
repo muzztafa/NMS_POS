@@ -15,6 +15,10 @@ namespace NMS_POS
 {
     public partial class Form1 : Form
     {
+        List<Pos_Users> usersList = new List<Pos_Users>();
+        List<string> keys = new List<string>();
+
+        public static Pos_Users loggedInUser;
         
         IFirebaseConfig config = new FirebaseConfig {
             AuthSecret = "m6NNKfbxyufWFj9YzHObMf2LTPXB9caps9qNjCrs",
@@ -32,39 +36,82 @@ namespace NMS_POS
         private void Form1_Load(object sender, EventArgs e)
         {
             client = new FireSharp.FirebaseClient(config);
-            if (client != null) {
-                MessageBox.Show("Connection established to firebase");
-            }
-            else
-            {
-                MessageBox.Show("Failed");
-            }
+
+            updateUsersList();
+            
         }
 
         private async void button1_Click(object sender, EventArgs e)
+
         {
-            /*var data = new Data
-             {
-                 name = name_editText.Text,
-                 pass = pw_editText.Text
-             };
+            bool check = false;
 
-             SetResponse response = await client.SetTaskAsync("Test/mustafa",data);
-             Data result = response.ResultAs<Data>();
+            for (int i = 0; i < usersList.Count; i++)
+            {
+                if (name_editText.Text == usersList[i].name && pw_editText.Text == usersList[i].password)
+                {
+                    check = true;
 
-             MessageBox.Show("Data Inserted");*/
+                    loggedInUser = new Pos_Users()
+                    {
+                        name = usersList[i].name,
+                        password = usersList[i].password,
+                        role = usersList[i].role
+                    };
+
+                    MessageBox.Show("Logged in Successfully");
+
+                    Home Home = new Home(); //this is the change, code for redirect  
+                    Home.Show();
+                    Hide();
+
+                    break;
+                }
+            }
+                if (!check)
+                {
+                    MessageBox.Show("Wrong username or password.");
+                }
+            
 
             
-            
-            
-            
 
 
-            Home h = new Home();
-            h.Show();
-            this.Hide();
-            Home Home = new Home(); //this is the change, code for redirect  
-            Home.Show();
+
+        }
+
+        private async void updateUsersList()
+        {
+            try
+            {
+                FirebaseResponse resp = await client.GetTaskAsync("posUsers/");
+                Dictionary<string, Pos_Users> dict = resp.ResultAs<Dictionary<string, Pos_Users>>();
+
+
+
+                //Adding product keys to Array Keys
+                foreach (KeyValuePair<string, Pos_Users> ele1 in dict)
+                {
+                    keys.Add(ele1.Key);
+
+                }
+
+                //traversing list keys to fetch product details
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    FirebaseResponse resp2 = await client.GetTaskAsync("posUsers/" + keys[i]);
+                    Pos_Users user = resp2.ResultAs<Pos_Users>();
+                    usersList.Add(user);
+
+
+                }
+
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No Users Exist Already.");
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

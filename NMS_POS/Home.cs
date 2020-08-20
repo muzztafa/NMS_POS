@@ -23,7 +23,7 @@ namespace NMS_POS
         {
             Invoices invoice = new Invoices();
             invoice.Show();
-            Hide();
+         
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -35,7 +35,16 @@ namespace NMS_POS
 
         private void Home_Load(object sender, EventArgs e)
         {
-           
+            if (Form1.loggedInUser.role == "Cashier")
+            {
+                reports_btn.Visible = false;
+                addUsers_btn.Visible = false;
+            }
+            else
+            {
+                reports_btn.Visible = true;
+                addUsers_btn.Visible = true;
+            }
         }
 
         private void reports_btn_MouseHover(object sender, EventArgs e)
@@ -47,14 +56,26 @@ namespace NMS_POS
         {
             Inventory i = new Inventory();
             i.Show();
-            Hide();
-        }
+                    }
 
         private void reports_btn_Click(object sender, EventArgs e)
         {
             Reports r = new Reports();
             r.Show();
-            this.Hide();
+            
+        }
+
+        private void addUsers_btn_Click(object sender, EventArgs e)
+        {
+            Manage_Users mu = new Manage_Users();
+            mu.Show();
+            
+        }
+
+        private void purchase_btn_Click(object sender, EventArgs e)
+        {
+            Purchasing p = new Purchasing();
+            p.Show();
         }
     }
 }

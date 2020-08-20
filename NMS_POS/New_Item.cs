@@ -106,7 +106,7 @@ namespace NMS_POS
                     }
 
                     //Adding product to firebase
-                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text + "", name_editText.Text, temp2, price_editText.Text, quantity_editText.Text, DateTime.Now.ToString());
+                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, temp1, image_editText.Text + "", name_editText.Text, temp2, double.Parse(price_editText.Text), int.Parse(quantity_editText.Text), DateTime.Now.ToString());
 
                     PushResponse response = await client.PushTaskAsync("products", product);
 

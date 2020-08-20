@@ -129,7 +129,7 @@ namespace NMS_POS
             }
             catch (Exception)
             {
-                MessageBox.Show("Cant connect to FIREBASE. Please check your internet connection!");
+                MessageBox.Show("Cant download available vendors. Add a vendor and/or check your internet connection.");
             }
         }
 
@@ -161,20 +161,7 @@ namespace NMS_POS
 
             }
 
-                /*  for (int i = 0; i < productList.Count; i++)
-                  {
-                      DataRow row = dt.NewRow();
-                      row["Name"] = productList[i].name;
-                      row["Price"] = productList[i].price;
-                      row["Quantity"] = productList[i].quantity;
-                      row["Discount"] = productList[i].discount;
-                      row["Description"] = productList[i].description;
-                      row["Featured"] = productList[i].featured;
-                      row["Prescription"] = productList[i].prescription;
-                      row["Date"] = productList[i].timestamp;
-
-                      dt.Rows.Add(row);
-                  }*/
+                
             }
             catch (Exception)
             {
@@ -227,7 +214,7 @@ namespace NMS_POS
                 if (!check)
                 {
                     //Adding product to firebase if it doesn't exist
-                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, price_editText.Text, quantity_editText.Text, DateTime.Now.ToString());
+                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, double.Parse(price_editText.Text), int.Parse(quantity_editText.Text), DateTime.Now.ToString());
 
                     //PushResponse response = await client.PushTaskAsync("products", product);
 
@@ -256,7 +243,7 @@ namespace NMS_POS
                     row["Price"] = product.price;
                     row["Quantity"] = product.quantity;
                     row["Discount"] = product.discount;
-                    row["Total"] = "" + double.Parse(product.quantity) * double.Parse(product.price);
+                    row["Total"] = "" +product.quantity * product.price;
                     row["Description"] = product.description;
                     row["Featured"] = product.featured;
                     row["Prescription"] = product.prescription;
@@ -264,7 +251,7 @@ namespace NMS_POS
 
                     dt.Rows.Add(row);
 
-                    totalBill_label.Text = "" + (double.Parse(totalBill_label.Text)+double.Parse(product.quantity) * double.Parse(product.price));
+                    totalBill_label.Text = "" + (double.Parse(totalBill_label.Text)+product.quantity * product.price);
 
                     name_editText.Text = "";
 
@@ -273,8 +260,8 @@ namespace NMS_POS
                 else
                 {
                     //MessageBox.Show("Product already exists in the inventory.");
-                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, price_editText.Text, ""+(Int32.Parse(quantity_editText.Text)+Int32.Parse(productList[indexFound].quantity)), DateTime.Now.ToString());
-                    Products_class product2 = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, price_editText.Text, quantity_editText.Text, DateTime.Now.ToString());
+                    Products_class product = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, double.Parse(price_editText.Text), Int32.Parse(quantity_editText.Text) + productList[indexFound].quantity, DateTime.Now.ToString());
+                    Products_class product2 = new Products_class(description_editText.Text, discount_editText.Text, false, image_editText.Text + "", name_editText.Text, false, double.Parse(price_editText.Text), int.Parse(quantity_editText.Text), DateTime.Now.ToString());
 
                     //adding new row to DT
                     DataRow row = dt.NewRow();
@@ -282,15 +269,16 @@ namespace NMS_POS
                     row["Price"] = product.price;
                     row["Quantity"] = quantity_editText.Text;
                     row["Discount"] = product.discount;
-                    row["Total"] = "" + double.Parse(quantity_editText.Text) * double.Parse(product.price);
+                    row["Total"] = "" + double.Parse(quantity_editText.Text) * product.price;
                     row["Description"] = product.description;
                     row["Featured"] = product.featured;
                     row["Prescription"] = product.prescription;
                     row["Date"] = product.timestamp;
+                    
 
                     dt.Rows.Add(row);
 
-                    totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) + double.Parse(quantity_editText.Text) * double.Parse(product.price));
+                    totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) + double.Parse(quantity_editText.Text) * product.price);
 
                     selectedProductsListUPDATE.Add(product);
                     keysUPDATE.Add(keys[indexFound]);
@@ -331,7 +319,7 @@ namespace NMS_POS
                 {
                     if(name == selectedProductsList[i].name)
                     {
-                        totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) - (double.Parse(selectedProductsList[i].price) * double.Parse(selectedProductsList[i].quantity)));
+                        totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) - (selectedProductsList[i].price * selectedProductsList[i].quantity));
                         selectedProductsList.RemoveAt(i);
                         //Console.WriteLine("Removec from selectproduclis");
                         break;
@@ -354,7 +342,7 @@ namespace NMS_POS
                 {
                     if (name == newProductList[i].name)
                     {
-                        totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) - (double.Parse(newProductList[i].price) * double.Parse(newProductList[i].quantity)));
+                        totalBill_label.Text = "" + (double.Parse(totalBill_label.Text) - (newProductList[i].price * newProductList[i].quantity));
                         newProductList.RemoveAt(i);
                        // Console.WriteLine("Removec from newproduclis");
                             break;
@@ -402,7 +390,8 @@ namespace NMS_POS
                         orderNo = orderNo_editText.Text,
                         orderDate = orderDate_editText.Text,
                         totalBill = totalBill_label.Text,
-                        productList = newList
+                        productList = newList,
+                        punchedBy = Form1.loggedInUser.name
                     };
 
                     try
@@ -439,6 +428,11 @@ namespace NMS_POS
                     MessageBox.Show("Please Select a vendor first!");
                 }
             }
+        }
+
+        private void products_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

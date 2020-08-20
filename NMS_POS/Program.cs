@@ -17,7 +17,7 @@ namespace NMS_POS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Reports());
+            Application.Run(new Form1());
 
 
         }

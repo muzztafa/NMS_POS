@@ -35,6 +35,7 @@
             this.inventory_btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.addUsers_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             this.purchase_btn.Size = new System.Drawing.Size(265, 137);
             this.purchase_btn.TabIndex = 2;
             this.purchase_btn.UseVisualStyleBackColor = true;
+            this.purchase_btn.Click += new System.EventHandler(this.purchase_btn_Click);
             // 
             // inventory_btn
             // 
@@ -108,6 +110,18 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // addUsers_btn
+            // 
+            this.addUsers_btn.AutoSize = true;
+            this.addUsers_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.addUsers_btn.Location = new System.Drawing.Point(834, 592);
+            this.addUsers_btn.Name = "addUsers_btn";
+            this.addUsers_btn.Size = new System.Drawing.Size(196, 30);
+            this.addUsers_btn.TabIndex = 7;
+            this.addUsers_btn.Text = "Manage Users";
+            this.addUsers_btn.UseVisualStyleBackColor = true;
+            this.addUsers_btn.Click += new System.EventHandler(this.addUsers_btn_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +130,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1134, 634);
+            this.Controls.Add(this.addUsers_btn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inventory_btn);
@@ -139,5 +154,6 @@
         private System.Windows.Forms.Button inventory_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button addUsers_btn;
     }
 }
