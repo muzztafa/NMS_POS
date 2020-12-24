@@ -95,9 +95,10 @@ namespace NMS_POS
                     //   Console.WriteLine("Row added");
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Connectivity Error.\nCheck your INTERNET and try again.");
+                // MessageBox.Show("Failed to download purchase orders OR there are no purchase orders.\nCheck your INTERNET and/or create a purchase order to show.");
+                MessageBox.Show(e.Message);
             }
         }
         private void purchasing_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -99,8 +99,9 @@ namespace NMS_POS
                     row["Description"] = productList[temp].description;
 
                     double tempPrice = productList[temp].price;
-                    int tempDisc = Int32.Parse(productList[temp].discount);
-                    double discountedPrice = tempPrice - ((tempDisc * tempPrice) / 100);
+                    // int tempDisc = Int32.Parse(productList[temp].discount+"");
+                    int tempDisc = 0;
+                     double discountedPrice = tempPrice - ((tempDisc * tempPrice) / 100);
 
                     row["Total"] = "" + discountedPrice * Int32.Parse(quantity_editText.Text);
 

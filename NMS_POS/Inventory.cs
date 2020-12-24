@@ -176,6 +176,7 @@ namespace NMS_POS
         {
             FirebaseResponse resp = await client.GetTaskAsync("products/");
             Dictionary<string, Products_class> dict = resp.ResultAs<Dictionary<string, Products_class>>();
+            Console.WriteLine("received prods keys");
 
 
 
@@ -187,6 +188,8 @@ namespace NMS_POS
                 //  ele1.Key, ele1.Value);
             }
 
+            Console.WriteLine("starting recieving prods");
+
             //traversing list keys to fetch product details
             for (int i = 0; i < keys.Count; i++)
             {
@@ -196,6 +199,7 @@ namespace NMS_POS
 
 
             }
+            Console.WriteLine("received prods successfykkt");
 
             for (int i = 0; i < productList.Count; i++)
             {
@@ -226,9 +230,10 @@ namespace NMS_POS
              
 
             }
-            catch(Exception)
+            catch(Exception ee)
             {
-                MessageBox.Show("Please select a row to delete");
+                //MessageBox.Show("Please select a row to delete");
+                MessageBox.Show(ee.Message);
             }
             }
 
@@ -266,82 +271,89 @@ namespace NMS_POS
 
         private async void update_btn_Click(object sender, EventArgs e)
         {
-            Products_class product = productList[selectedRow];
-
-            if (product.name != name_editText.Text)
-            {
-                product.name = name_editText.Text;
-                inventory_datagrid.Rows[selectedRow].Cells[0].Value =product.name;
-            }
-
-            if (product.price+"" != price_editText.Text)
-            {
-                product.price = double.Parse(price_editText.Text);
-                inventory_datagrid.Rows[selectedRow].Cells[1].Value = product.price;
-            }
-
-            if (product.quantity != int.Parse(quantity_editText.Text))
-            {
-                product.quantity = int.Parse(quantity_editText.Text);
-                inventory_datagrid.Rows[selectedRow].Cells[2].Value = product.quantity;
-            }
-
-            if (product.discount != discount_editText.Text)
-            {
-                product.discount = discount_editText.Text;
-                inventory_datagrid.Rows[selectedRow].Cells[3].Value = product.discount;
-            }
-
-            if (product.description != description_editText.Text)
-            {
-                product.description = description_editText.Text;
-                inventory_datagrid.Rows[selectedRow].Cells[4].Value = product.description;
-            }
-
-            bool temp1, temp2;
-            if (featured_list.GetItemText(featured_list.SelectedItem) == "false")
-            {
-                temp1 = false;
-            }
-            else
-            {
-                temp1 = true;
-            }
-
-            if (prescription_list.GetItemText(prescription_list.SelectedItem) == "false")
-            {
-                temp2 = false;
-            }
-            else
-            {
-                temp2 = true;
-            }
-
-            product.image = image_editText.Text;
-            product.featured = temp1;
-            product.prescription = temp2;
-            inventory_datagrid.Rows[selectedRow].Cells[5].Value = product.featured;
-            inventory_datagrid.Rows[selectedRow].Cells[6].Value = product.prescription;
             try
             {
-                FirebaseResponse response = await client.UpdateTaskAsync("products/" + keys[selectedRow], product);
-                //setting values to default
-                name_editText.Text = "";
-                price_editText.Text = "";
-                description_editText.Text = "";
-                prescription_list.SelectedIndex = 0;
-                featured_list.SelectedIndex = 0;
-                discount_editText.Text = "0";
-                quantity_editText.Text = "";
-                image_editText.Text = "";
+                Products_class product = productList[selectedRow];
+                if (product.name != name_editText.Text)
+                {
+                    product.name = name_editText.Text;
+                    inventory_datagrid.Rows[selectedRow].Cells[0].Value = product.name;
+                }
 
-                MessageBox.Show("Updated Successfully!");
+                if (product.price + "" != price_editText.Text)
+                {
+                    product.price = double.Parse(price_editText.Text);
+                    inventory_datagrid.Rows[selectedRow].Cells[1].Value = product.price;
+                }
+
+                if (product.quantity != int.Parse(quantity_editText.Text))
+                {
+                    product.quantity = int.Parse(quantity_editText.Text);
+                    inventory_datagrid.Rows[selectedRow].Cells[2].Value = product.quantity;
+                }
+
+                if (product.discount != discount_editText.Text)
+                {
+                    product.discount = discount_editText.Text;
+                    inventory_datagrid.Rows[selectedRow].Cells[3].Value = product.discount;
+                }
+
+                if (product.description != description_editText.Text)
+                {
+                    product.description = description_editText.Text;
+                    inventory_datagrid.Rows[selectedRow].Cells[4].Value = product.description;
+                }
+
+                bool temp1, temp2;
+                if (featured_list.GetItemText(featured_list.SelectedItem) == "false")
+                {
+                    temp1 = false;
+                }
+                else
+                {
+                    temp1 = true;
+                }
+
+                if (prescription_list.GetItemText(prescription_list.SelectedItem) == "false")
+                {
+                    temp2 = false;
+                }
+                else
+                {
+                    temp2 = true;
+                }
+
+                product.image = image_editText.Text;
+                product.featured = temp1;
+                product.prescription = temp2;
+                inventory_datagrid.Rows[selectedRow].Cells[5].Value = product.featured;
+                inventory_datagrid.Rows[selectedRow].Cells[6].Value = product.prescription;
+                try
+                {
+                    FirebaseResponse response = await client.UpdateTaskAsync("products/" + keys[selectedRow], product);
+                    //setting values to default
+                    name_editText.Text = "";
+                    price_editText.Text = "";
+                    description_editText.Text = "";
+                    prescription_list.SelectedIndex = 0;
+                    featured_list.SelectedIndex = 0;
+                    discount_editText.Text = "0";
+                    quantity_editText.Text = "";
+                    image_editText.Text = "";
+
+                    MessageBox.Show("Updated Successfully!");
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Update Failed");
+                }
             }
-
             catch (Exception)
             {
-                MessageBox.Show("Update Failed");
+                MessageBox.Show("Please select an item to edit");
             }
+            
         }
 
         private void inventory_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
