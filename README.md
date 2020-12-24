@@ -1,8 +1,10 @@
 # Point of Sale for NMS Pharmacy
 
-Also check: nmspharmacy.com
+This is a standalone Electronic Point of Sale. It uses WPF as its framework and Firebase Realtime Database as its backend. It's part of a freelance project that me and my group are working on. It also includes:
 
-This is a standalone Electronic Point of Sale created by me. It uses WPF as its framework and Firebase Realtime Database as its backend. 
+1) An E-Commerce website. (check: nmspharmacy.com)
+2) Hybrid mobile apps
+3) Rider tracking android app
 
 Note that all connections are through Firebase and no SQL database has been setup locally.
 
