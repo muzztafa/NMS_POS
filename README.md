@@ -1,4 +1,4 @@
-#Point of Sale for NMS Pharmacy
+# Point of Sale for NMS Pharmacy
 
 Also check: nmspharmacy.com
 
@@ -9,34 +9,34 @@ Note that all connections are through Firebase and no SQL database has been setu
 Any suggestion and feedback is highly appreciated.
 
 
-#Login Screen:
+# Login Screen:
 
 ![](images/1.PNG)
 
-#Home Screen:
+# Home Screen:
 
 ![](images/home.PNG)
 
-#Inventory:
+# Inventory:
 
 ![](images/inventory.PNG)
 
-#Invoices:
+# Invoices:
 
 ![](images/invoices.PNG)
 
-#New Invoice:
+# New Invoice:
 
 ![](images/newInvoice.PNG)
 
-#Purchasing:
+# Purchasing:
 
 ![](images/newPurchase.PNG)
 
-#Manage Users of POS:
+# Manage Users of POS:
 
 ![](images/manageUsers.PNG)
 
-#Reporting:
+# Reporting:
 
 ![](images/reports.PNG)
